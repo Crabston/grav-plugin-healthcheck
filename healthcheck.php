@@ -4,9 +4,9 @@ namespace Grav\Plugin;
 use Grav\Common\Page\Collection;
 use Grav\Common\Page\Page;
 use Grav\Common\Plugin;
+use Grav\Common\Processors\Events;
 use Grav\Common\Uri;
 
-use Grav\Common\Taxonomy;
 /**
  * Class HealthcheckPlugin
  * @package Grav\Plugin
@@ -23,33 +23,16 @@ class HealthcheckPlugin extends Plugin
     /**
      * @return array
      *
-     * The getSubscribedEvents() gives the core a list of events
-     *     that the plugin wants to listen to. The key of each
-     *     array section is the event that the plugin listens to
-     *     and the value (in the form of an array) contains the
-     *     callable (or function) as well as the priority. The
-     *     higher the number the higher the priority.
      */
     public static function getSubscribedEvents(): array
     {
         return [
             'onPluginsInitialized' => [
-                // Uncomment following line when plugin requires Grav < 1.7
-                // ['autoload', 100000],
                 ['onPluginsInitialized', 0],
-            ]
+            ],
+	         'onTwigTemplatePaths' => ['onTwigTemplatePaths', 0]
         ];
     }
-
-    ///**
-    // * Composer autoload
-    // *
-    // * @return ClassLoader
-    // */
-    //public function autoload(): ClassLoader
-    //{
-    //    return require __DIR__ . '/vendor/autoload.php';
-    //}
 
     /**
      * Initialize the plugin
@@ -70,7 +53,6 @@ class HealthcheckPlugin extends Plugin
 			    'onPageInitialized' => ['onPageInitialized', 0]
 		    ]);
 	    }
-
     }
 
 	/**
@@ -78,9 +60,25 @@ class HealthcheckPlugin extends Plugin
 	 */
 	public function onPageInitialized(): void
 	{
-		$config = $this->config();
+		$payload = [
+			'status' => 200,
+			'message' => 'OK'
+		];
 
-		$this->grav['page']->template($config['template'] ?? 'healthcheck');
+		$json = json_encode($payload);
+		header('Content-Type: application/json');
+		//http_response_code(200);
+		// add status code
+		header('HTTP/1.1 200 OK');
+		echo $json;
 
+	}
+
+	/**
+	 * Add current directory to twig lookup paths.
+	 */
+	public function onTwigTemplatePaths()
+	{
+		array_unshift($this->grav['twig']->twig_paths, __DIR__ . '/templates');
 	}
 }
