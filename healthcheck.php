@@ -1,11 +1,8 @@
 <?php
 namespace Grav\Plugin;
 
-use Grav\Common\Page\Collection;
-use Grav\Common\Page\Page;
 use Grav\Common\Plugin;
-use Grav\Common\Processors\Events;
-use Grav\Common\Uri;
+
 
 /**
  * Class HealthcheckPlugin
@@ -18,7 +15,6 @@ class HealthcheckPlugin extends Plugin
 	 * @var
 	 */
 	protected $uri;
-	protected $healthConfig;
 
     /**
      * @return array
@@ -27,10 +23,9 @@ class HealthcheckPlugin extends Plugin
     public static function getSubscribedEvents(): array
     {
         return [
-            'onPluginsInitialized' => [
-                ['onPluginsInitialized', 0],
-            ],
-	         'onTwigTemplatePaths' => ['onTwigTemplatePaths', 0]
+			 'onPluginsInitialized' => ['onPluginsInitialized', 0],
+	         'onTwigTemplatePaths' => ['onTwigTemplatePaths', 0],
+	         'onOutputGenerated' => ['onOutputGenerated', 0],
         ];
     }
 
@@ -66,12 +61,14 @@ class HealthcheckPlugin extends Plugin
 		];
 
 		$json = json_encode($payload);
-		header('Content-Type: application/json');
-		//http_response_code(200);
-		// add status code
-		header('HTTP/1.1 200 OK');
 		echo $json;
 
+	}
+
+	public function onOutputGenerated()
+	{
+
+		$this->grav['page']->modifyHeader('http_response_code', 200);
 	}
 
 	/**
