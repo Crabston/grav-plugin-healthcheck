@@ -3,10 +3,11 @@ slug: healthcheck
 type: plugin
 version: 1.0.0
 description: Create a Healthcheck endpoint for your Grav site to monitor the status of your site
-icon: plug
+icon: stethoscope
 author:
-  name: Nicholas Krebs
-  email: nicholas@crabston.ch
+  name: Crabston GmbH
+  email: contact@crabston.dev
+  url: https://crabston.dev
 homepage: https://github.com/Crabston/grav-plugin-healthcheck
 demo: https://grav.demo.crabston.dev/health
 keywords: grav, plugin, healthcheck, monitoring, status
