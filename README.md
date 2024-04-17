@@ -1,6 +1,6 @@
 # Healthcheck Plugin
 
-The **Healthcheck** Plugin is an extension for [Grav CMS](https://github.com/getgrav/grav). Create Healthcheck endpoint to monitor the status of your Grav site.
+The **Healthcheck** Plugin is an extension for [Grav CMS](https://github.com/getgrav/grav). Create a Healthcheck endpoint for your Grav site to monitor the status of your site
 
 ## Installation
 
