@@ -1,8 +1,6 @@
 # Healthcheck Plugin
 
-**This README.md file should be modified to describe the features, installation, configuration, and general usage of the plugin.**
-
-The **Healthcheck** Plugin is an extension for [Grav CMS](https://github.com/getgrav/grav). Create Healthcheck endpoint
+The **Healthcheck** Plugin is an extension for [Grav CMS](https://github.com/getgrav/grav). Create Healthcheck endpoint to monitor the status of your Grav site.
 
 ## Installation
 
@@ -37,20 +35,28 @@ Before configuring this plugin, you should copy the `user/plugins/healthcheck/he
 Here is the default configuration and an explanation of available options:
 
 ```yaml
-enabled: true
+enabled: true   # Enable the plugin
+route: /health  # The route to the healthcheck endpoint
 ```
 
 Note that if you use the Admin Plugin, a file with your configuration named healthcheck.yaml will be saved in the `user/config/plugins/`-folder once the configuration is saved in the Admin.
 
 ## Usage
 
-**Describe how to use the plugin.**
+The Healthcheck plugin adds a new route to your Grav site. By default, the route is `/health`. You can change the route in the plugin configuration.
 
-## Credits
+The healthcheck endpoint returns a JSON response with the following information:
 
-**Did you incorporate third-party code? Want to thank somebody?**
+```json
+{
+    "status": 200,
+    "message": "OK"
+}
+```
+
+With this information, you can monitor the status of your Grav site.
 
 ## To Do
 
-- [ ] Future plans, if any
-
+- [ ] Add more information to the healthcheck response
+- [ ] Add more configuration options
