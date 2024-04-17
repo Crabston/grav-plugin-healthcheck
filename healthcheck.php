@@ -16,8 +16,6 @@ class HealthcheckPlugin extends Plugin {
 	public static function getSubscribedEvents(): array {
 		return [
 			'onPluginsInitialized' => ['onPluginsInitialized', 0],
-			'onTwigTemplatePaths' => ['onTwigTemplatePaths', 0],
-			'onOutputGenerated' => ['onOutputGenerated', 0],
 		];
 	}
 
@@ -38,7 +36,9 @@ class HealthcheckPlugin extends Plugin {
 		// Check if the route is set and matches the current path
 		if ($route && $route == $uri->path()) {
 			$this->enable([
-				'onPageInitialized' => ['onPageInitialized', 0]
+				'onPageInitialized' => ['onPageInitialized', 0],
+				'onTwigTemplatePaths' => ['onTwigTemplatePaths', 0],
+				'onOutputGenerated' => ['onOutputGenerated', 0],
 			]);
 		}
 	}
@@ -57,16 +57,16 @@ class HealthcheckPlugin extends Plugin {
 	}
 
 	/**
-	 * Set the response code to 200
-	 */
-	public function onOutputGenerated() {
-		$this->grav['page']->modifyHeader('http_response_code', 200);
-	}
-
-	/**
 	 * Add the plugin templates path
 	 */
 	public function onTwigTemplatePaths() {
 		array_unshift($this->grav['twig']->twig_paths, __DIR__ . '/templates');
+	}
+
+	/**
+	 * Set the response code to 200
+	 */
+	public function onOutputGenerated() {
+		$this->grav['page']->modifyHeader('http_response_code', 200);
 	}
 }
