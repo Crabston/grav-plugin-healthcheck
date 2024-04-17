@@ -1,21 +1,21 @@
 name: Healthcheck
 slug: healthcheck
 type: plugin
-version: 0.1.0
-description: Create Healthcheck endpoint
+version: 1.0.0
+description: Create a Healthcheck endpoint for your Grav site to monitor the status of your site
 icon: plug
 author:
-  name: nicholas
+  name: Nicholas Krebs
   email: nicholas@crabston.ch
-homepage: https://github.com/chraebsli/grav-plugin-healthcheck
-demo: http://demo.yoursite.com
-keywords: grav, plugin, etc
-bugs: https://github.com/chraebsli/grav-plugin-healthcheck/issues
-docs: https://github.com/chraebsli/grav-plugin-healthcheck/blob/develop/README.md
+homepage: https://github.com/Crabston/grav-plugin-healthcheck
+demo: https://grav.demo.crabston.dev/health
+keywords: grav, plugin, healthcheck, monitoring, status
+bugs: https://github.com/Crabston/grav-plugin-healthcheck/issues
+docs: https://github.com/Crabston/grav-plugin-healthcheck/blob/main/README.md
 license: MIT
 
 dependencies:
-  - { name: grav, version: '>=1.6.0' }
+  - { name: grav, version: '>=1.7.0' }
 
 form:
   validation: loose
