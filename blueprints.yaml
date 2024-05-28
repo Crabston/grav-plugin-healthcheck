@@ -21,6 +21,7 @@ dependencies:
 form:
   validation: loose
   fields:
+
     enabled:
       type: toggle
       label: PLUGIN_ADMIN.PLUGIN_STATUS
@@ -31,7 +32,106 @@ form:
         0: PLUGIN_ADMIN.DISABLED
       validate:
         type: bool
+
     route:
       type: text
       label: PLUGIN_HEALTHCHECK.ROUTE.LABEL
       description: PLUGIN_HEALTHCHECK.ROUTE.DESCRIPTION
+
+    info:
+      type: section
+      underline: true
+      title: PLUGIN_HEALTHCHECK.INFO.TITLE
+      fields:
+        info.status_code:
+          type: toggle
+          label: PLUGIN_HEALTHCHECK.STATUS_CODE.LABEL
+          help: PLUGIN_HEALTHCHECK.STATUS_CODE.HELP
+          highlight: 1
+          default: 1
+          options:
+            1: PLUGIN_ADMIN.ENABLED
+            0: PLUGIN_ADMIN.DISABLED
+          validate:
+            type: bool
+
+        info.status_message:
+          type: toggle
+          label: PLUGIN_HEALTHCHECK.STATUS_MESSAGE.LABEL
+          help: PLUGIN_HEALTHCHECK.STATUS_MESSAGE.HELP
+          highlight: 1
+          default: 1
+          options:
+            1: PLUGIN_ADMIN.ENABLED
+            0: PLUGIN_ADMIN.DISABLED
+          validate:
+            type: bool
+
+        info.timestamp:
+          type: toggle
+          label: PLUGIN_HEALTHCHECK.TIMESTAMP.LABEL
+          help: PLUGIN_HEALTHCHECK.TIMESTAMP.HELP
+          highlight: 1
+          default: 1
+          options:
+            1: PLUGIN_ADMIN.ENABLED
+            0: PLUGIN_ADMIN.DISABLED
+          validate:
+            type: bool
+
+        info.environment:
+          type: toggle
+          label: PLUGIN_HEALTHCHECK.ENVIRONMENT.LABEL
+          help: PLUGIN_HEALTHCHECK.ENVIRONMENT.HELP
+          highlight: 1
+          default: 1
+          options:
+            1: PLUGIN_ADMIN.ENABLED
+            0: PLUGIN_ADMIN.DISABLED
+          validate:
+            type: bool
+
+        info.grav_version:
+          type: toggle
+          label: PLUGIN_HEALTHCHECK.GRAV_VERSION.LABEL
+          help: PLUGIN_HEALTHCHECK.GRAV_VERSION.HELP
+          highlight: 1
+          default: 1
+          options:
+            1: PLUGIN_ADMIN.ENABLED
+            0: PLUGIN_ADMIN.DISABLED
+          validate:
+            type: bool
+
+        info.php_version:
+          type: toggle
+          label: PLUGIN_HEALTHCHECK.PHP_VERSION.LABEL
+          help: PLUGIN_HEALTHCHECK.PHP_VERSION.HELP
+          highlight: 1
+          default: 1
+          options:
+            1: PLUGIN_ADMIN.ENABLED
+            0: PLUGIN_ADMIN.DISABLED
+          validate:
+            type: bool
+
+        info.custom:
+          type: array
+          label: PLUGIN_HEALTHCHECK.CUSTOM.LABEL
+          help: PLUGIN_HEALTHCHECK.CUSTOM.HELP
+          placeholder_key: PLUGIN_HEALTHCHECK.PLACEHOLDER_KEY
+          placeholder_value: PLUGIN_HEALTHCHECK.PLACEHOLDER_VALUE
+          description: PLUGIN_HEALTHCHECK.CUSTOM.DESCRIPTION
+
+    config:
+      type: section
+      underline: true
+      title: PLUGIN_HEALTHCHECK.CONFIG.TITLE
+      fields:
+        config:
+          type: array
+          label: PLUGIN_HEALTHCHECK.CONFIG.LABEL
+          help: PLUGIN_HEALTHCHECK.CONFIG.HELP
+          placeholder_key: PLUGIN_HEALTHCHECK.PLACEHOLDER_KEY
+          placeholder_value: PLUGIN_HEALTHCHECK.PLACEHOLDER_VALUE
+          description: PLUGIN_HEALTHCHECK.CONFIG.DESCRIPTION

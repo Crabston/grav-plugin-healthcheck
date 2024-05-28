@@ -32,11 +32,23 @@ If you use the Admin Plugin, you can install the plugin directly by browsing the
 
 Before configuring this plugin, you should copy the `user/plugins/healthcheck/healthcheck.yaml` to `user/config/plugins/healthcheck.yaml` and only edit that copy.
 
-Here is the default configuration and an explanation of available options:
+Here is the default configuration and an explanation of available options (see the [example output](#example-output) to see how it is displayed):
 
 ```yaml
-enabled: true   # Enable the plugin
-route: /health  # The route to the healthcheck endpoint
+enabled: true                  # Enable the plugin
+route: /health                 # Route to the healthcheck endpoint
+info:                          # Display additional, static information:
+  status_code: true            # Display the status code
+  status_message: true         # Display the status message
+  timestamp: true              # Display the timestamp
+  environment: false           # Environment information
+  grav_version: false          # Grav version
+  php_version: false           # PHP version
+  custom:                      # Custom static information, key-value pairs
+    nested.key: static value
+config:                        # Configuration information, key-value pairs, generated
+  timezone: system.timezone
+  site.title: site.title
 ```
 
 Note that if you use the Admin Plugin, a file with your configuration named healthcheck.yaml will be saved in the `user/config/plugins/`-folder once the configuration is saved in the Admin.
@@ -45,12 +57,24 @@ Note that if you use the Admin Plugin, a file with your configuration named heal
 
 The Healthcheck plugin adds a new route to your Grav site. By default, the route is `/health`. You can change the route in the plugin configuration.
 
-The healthcheck endpoint returns a JSON response with the following information:
+### Example Output
+
+The healthcheck endpoint returns a JSON response with the following information (depending on the configuration):
 
 ```json
 {
-    "status": 200,
-    "message": "OK"
+  "status_code": 200,
+  "status_message": "OK",
+  "timestamp": "2024-05-28 14:45:20",
+  "nested": {
+    "key": "static value"
+  },
+  "config": {
+    "timezone": "Europe/Zurich",
+    "site": {
+      "title": "Grav Tutorial"
+    }
+  }
 }
 ```
 
@@ -58,5 +82,7 @@ With this information, you can monitor the status of your Grav site.
 
 ## To Do
 
-- [ ] Add more information to the healthcheck response
-- [ ] Add more configuration options
+- [ ] Add option to get info of custom PHP code, for example custom `date()` function
+- [ ] Add option to get parts of info from an array, for example only names of backup profiles with `backups.profiles[].name`
+- [x] Add more information to the healthcheck response
+- [x] Add more configuration options
