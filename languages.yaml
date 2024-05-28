@@ -1,0 +1,11 @@
+en:
+  PLUGIN_HEALTHCHECK:
+    ROUTE:
+      LABEL: Route
+      DESCRIPTION: Endpoint where the healthcheck will be available
+
+de:
+  PLUGIN_HEALTHCHECK:
+    ROUTE:
+      LABEL: Pfad
+      DESCRIPTION: Endpunkt, an dem der Healthcheck verfügbar sein wird
