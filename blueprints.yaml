@@ -21,6 +21,7 @@ dependencies:
 form:
   validation: loose
   fields:
+
     enabled:
       type: toggle
       label: PLUGIN_ADMIN.PLUGIN_STATUS
@@ -31,7 +32,88 @@ form:
         0: PLUGIN_ADMIN.DISABLED
       validate:
         type: bool
+
     route:
       type: text
       label: PLUGIN_HEALTHCHECK.ROUTE.LABEL
       description: PLUGIN_HEALTHCHECK.ROUTE.DESCRIPTION
+
+    info:
+      type: section
+      underline: true
+      title: Info Section
+      test: test
+      fields:
+        info.status_code:
+          type: toggle
+          label: Status Code
+          highlight: 1
+          default: 1
+          options:
+            1: PLUGIN_ADMIN.ENABLED
+            0: PLUGIN_ADMIN.DISABLED
+          validate:
+            type: bool
+
+        info.status_message:
+          type: toggle
+          label: Status Message
+          highlight: 1
+          default: 1
+          options:
+            1: PLUGIN_ADMIN.ENABLED
+            0: PLUGIN_ADMIN.DISABLED
+          validate:
+            type: bool
+
+        info.grav_version:
+          type: toggle
+          label: Grav Version
+          highlight: 1
+          default: 1
+          options:
+            1: PLUGIN_ADMIN.ENABLED
+            0: PLUGIN_ADMIN.DISABLED
+          validate:
+            type: bool
+
+        info.php_version:
+          type: toggle
+          label: Grav Version
+          highlight: 1
+          default: 1
+          options:
+            1: PLUGIN_ADMIN.ENABLED
+            0: PLUGIN_ADMIN.DISABLED
+          validate:
+            type: bool
+
+        info.environment:
+          type: toggle
+          label: Environment
+          highlight: 1
+          default: 1
+          options:
+            1: PLUGIN_ADMIN.ENABLED
+            0: PLUGIN_ADMIN.DISABLED
+          validate:
+            type: bool
+
+        info.custom:
+          type: array
+          label: Custom Data
+          placeholder_key: Key
+          placeholder_value: Value
+
+    config:
+      type: section
+      underline: true
+      title: Config Section
+      test: test
+      fields:
+        config.custom:
+          type: array
+          label: Configs
+          placeholder_key: Key
+          placeholder_value: Value
+          description: "Enter the configuration settings you want to display in the healthcheck endpoint. For example `title: site.title` will show the sites title."
