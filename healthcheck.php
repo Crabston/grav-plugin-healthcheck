@@ -49,7 +49,16 @@ class HealthcheckPlugin extends Plugin {
 	public function onPageInitialized(): void {
 		$payload = [
 			'status' => 200,
-			'message' => 'OK'
+			'message' => 'OK',
+			'version' => GRAV_VERSION,
+			'php' => PHP_VERSION,
+			'environment' => $this->grav['config']->get('environment'),
+			'config' => [
+				//'system' => $this->grav['config']->get('system'),
+				//'site' => $this->grav['config']->get('site'),
+				//'backups' => $this->grav['config']->get('backups'),
+				//'theme' => $this->grav['config']->get('theme'),
+			],
 		];
 
 		$json = json_encode($payload);
