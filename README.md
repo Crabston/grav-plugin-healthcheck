@@ -82,5 +82,7 @@ With this information, you can monitor the status of your Grav site.
 
 ## To Do
 
+- [ ] Add option to get info of custom PHP code, for example custom `date()` function
+- [ ] Add option to get parts of info from an array, for example only names of backup profiles with `backups.profiles[].name`
 - [x] Add more information to the healthcheck response
 - [x] Add more configuration options
