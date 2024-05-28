@@ -74,19 +74,24 @@ class HealthcheckPlugin extends Plugin {
 	 * @return array|null
 	 */
 	private function loopThroughConfig(array $config, bool $getConfig = false): ?array {
-		if (!is_array($config) || count($config) === 0) return null;
-
 		$payload = [];
+
 		foreach ($config as $key => $value) {
-			if (is_array($value)) {
-				$this->loopThroughConfig($value);
-			} else {
-				if ($getConfig) $value = $this->getGravConfig($value);
+			$keys = explode(".", $key);
+			$lastKey = array_pop($keys);
+			$ref = &$payload;
 
-				$payload[$key] = $value;
+			// recursively create the array structure
+			foreach ($keys as $k) {
+				if (!isset($ref[$k])) {
+					$ref[$k] = [];
+				}
+				$ref = &$ref[$k];
 			}
-		}
 
+			if ($getConfig) $value = $this->getGravConfig($value);
+			$ref[$lastKey] = $value;
+		}
 		return $payload;
 	}
 
