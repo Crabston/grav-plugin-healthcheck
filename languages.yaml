@@ -3,9 +3,71 @@ en:
     ROUTE:
       LABEL: Route
       DESCRIPTION: Endpoint where the healthcheck will be available
+    INFO:
+      TITLE: Static Information
+    STATUS_CODE:
+      LABEL: Status Code
+      HELP: Display the status code in the response
+    STATUS_MESSAGE:
+      LABEL: Status Message
+      HELP: Display the status message
+    TIMESTAMP:
+      LABEL: Timestamp
+      HELP: Display the timestamp
+    ENVIRONMENT:
+      LABEL: Environment
+      HELP: Display the environment string
+    GRAV_VERSION:
+      LABEL: Grav Version
+      HELP: Display the Grav version
+    PHP_VERSION:
+      LABEL: PHP Version
+      HELP: Display the PHP version
+    CUSTOM:
+      LABEL: Static Key-Value Pairs
+      HELP: Display custom static information
+      DESCRIPTION: "Enter a custom static key-value pair you want to display in the healthcheck endpoint. For nested keys, use dot notation, for example `some.nested.key: value`."
+    CONFIG:
+      TITLE: Configuration Information
+      LABEL: Key-Value Pairs
+      HELP: Display parts of the configuration (see docs for help)
+      DESCRIPTION: "Enter the configuration settings you want to display in the healthcheck endpoint. For nested keys, use dot notation. For example `title: site.title` will show the sites title."
+    PLACEHOLDER_KEY: Key
+    PLACEHOLDER_VALUE: Value
 
 de:
   PLUGIN_HEALTHCHECK:
     ROUTE:
       LABEL: Pfad
       DESCRIPTION: Endpunkt, an dem der Healthcheck verfügbar sein wird
+    INFO:
+      TITLE: Statische Informationen
+    STATUS_CODE:
+      LABEL: Status Code
+      HELP: Zeige den Statuscode in der Antwort
+    STATUS_MESSAGE:
+      LABEL: Status Nachricht
+      HELP: Zeige die Statusnachricht
+    TIMESTAMP:
+      LABEL: Timestamp
+      HELP: Zeige den Zeitstempel
+    ENVIRONMENT:
+      LABEL: Environment
+      HELP: Zeige den Umgebungsstring
+    GRAV_VERSION:
+      LABEL: Grav Version
+      HELP: Zeige die Grav Version
+    PHP_VERSION:
+      LABEL: PHP Version
+      HELP: Zeige die PHP Version
+    CUSTOM:
+      LABEL: Statische Schlüssel-Wert-Paare
+      HELP: Zeige benutzerdefinierte statische Informationen
+      DESCRIPTION: "Geben Sie benutzerdefinierte statische Schlüssel-Wert-Paare ein, die Sie im Healthcheck-Endpunkt anzeigen möchten. Verwenden Sie für verschachtelte Schlüssel die Punktnotation, z. B. `ein.verschachtelter .schlüssel: wert`."
+    CONFIG:
+      TITLE: Konfigurationsinformationen
+      LABEL: Schlüssel-Wert-Paare
+      HELP: Teile der Konfiguration anzeigen (siehe Dokumentation für Hilfe)
+      DESCRIPTION: "Geben Sie die Konfigurationseinstellungen ein, die Sie im Healthcheck-Endpunkt anzeigen möchten. Verwenden Sie für verschachtelte Schlüssel die Punktnotation. Zum Beispiel `title: site.title` zeigt den Titel der Website an."
+    PLACEHOLDER_KEY: Schlüssel
+    PLACEHOLDER_VALUE: Wert

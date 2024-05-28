@@ -41,12 +41,12 @@ form:
     info:
       type: section
       underline: true
-      title: Info Section
-      test: test
+      title: PLUGIN_HEALTHCHECK.INFO.TITLE
       fields:
         info.status_code:
           type: toggle
-          label: Status Code
+          label: PLUGIN_HEALTHCHECK.STATUS_CODE.LABEL
+          help: PLUGIN_HEALTHCHECK.STATUS_CODE.HELP
           highlight: 1
           default: 1
           options:
@@ -57,7 +57,8 @@ form:
 
         info.status_message:
           type: toggle
-          label: Status Message
+          label: PLUGIN_HEALTHCHECK.STATUS_MESSAGE.LABEL
+          help: PLUGIN_HEALTHCHECK.STATUS_MESSAGE.HELP
           highlight: 1
           default: 1
           options:
@@ -68,7 +69,8 @@ form:
 
         info.timestamp:
           type: toggle
-          label: Timestamp
+          label: PLUGIN_HEALTHCHECK.TIMESTAMP.LABEL
+          help: PLUGIN_HEALTHCHECK.TIMESTAMP.HELP
           highlight: 1
           default: 1
           options:
@@ -79,7 +81,8 @@ form:
 
         info.environment:
           type: toggle
-          label: Environment
+          label: PLUGIN_HEALTHCHECK.ENVIRONMENT.LABEL
+          help: PLUGIN_HEALTHCHECK.ENVIRONMENT.HELP
           highlight: 1
           default: 1
           options:
@@ -90,7 +93,8 @@ form:
 
         info.grav_version:
           type: toggle
-          label: Grav Version
+          label: PLUGIN_HEALTHCHECK.GRAV_VERSION.LABEL
+          help: PLUGIN_HEALTHCHECK.GRAV_VERSION.HELP
           highlight: 1
           default: 1
           options:
@@ -101,7 +105,8 @@ form:
 
         info.php_version:
           type: toggle
-          label: Grav Version
+          label: PLUGIN_HEALTHCHECK.PHP_VERSION.LABEL
+          help: PLUGIN_HEALTHCHECK.PHP_VERSION.HELP
           highlight: 1
           default: 1
           options:
@@ -112,19 +117,21 @@ form:
 
         info.custom:
           type: array
-          label: Custom Data
-          placeholder_key: Key
-          placeholder_value: Value
+          label: PLUGIN_HEALTHCHECK.CUSTOM.LABEL
+          help: PLUGIN_HEALTHCHECK.CUSTOM.HELP
+          placeholder_key: PLUGIN_HEALTHCHECK.PLACEHOLDER_KEY
+          placeholder_value: PLUGIN_HEALTHCHECK.PLACEHOLDER_VALUE
+          description: PLUGIN_HEALTHCHECK.CUSTOM.DESCRIPTION
 
     config:
       type: section
       underline: true
-      title: Config Section
-      test: test
+      title: PLUGIN_HEALTHCHECK.CONFIG.TITLE
       fields:
         config:
           type: array
-          label: Configs
-          placeholder_key: Key
-          placeholder_value: Value
-          description: "Enter the configuration settings you want to display in the healthcheck endpoint. For example `title: site.title` will show the sites title."
+          label: PLUGIN_HEALTHCHECK.CONFIG.LABEL
+          help: PLUGIN_HEALTHCHECK.CONFIG.HELP
+          placeholder_key: PLUGIN_HEALTHCHECK.PLACEHOLDER_KEY
+          placeholder_value: PLUGIN_HEALTHCHECK.PLACEHOLDER_VALUE
+          description: PLUGIN_HEALTHCHECK.CONFIG.DESCRIPTION
