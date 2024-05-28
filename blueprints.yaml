@@ -66,6 +66,28 @@ form:
           validate:
             type: bool
 
+        info.timestamp:
+          type: toggle
+          label: Timestamp
+          highlight: 1
+          default: 1
+          options:
+            1: PLUGIN_ADMIN.ENABLED
+            0: PLUGIN_ADMIN.DISABLED
+          validate:
+            type: bool
+
+        info.environment:
+          type: toggle
+          label: Environment
+          highlight: 1
+          default: 1
+          options:
+            1: PLUGIN_ADMIN.ENABLED
+            0: PLUGIN_ADMIN.DISABLED
+          validate:
+            type: bool
+
         info.grav_version:
           type: toggle
           label: Grav Version
@@ -88,17 +110,6 @@ form:
           validate:
             type: bool
 
-        info.environment:
-          type: toggle
-          label: Environment
-          highlight: 1
-          default: 1
-          options:
-            1: PLUGIN_ADMIN.ENABLED
-            0: PLUGIN_ADMIN.DISABLED
-          validate:
-            type: bool
-
         info.custom:
           type: array
           label: Custom Data
@@ -111,7 +122,7 @@ form:
       title: Config Section
       test: test
       fields:
-        config.custom:
+        config:
           type: array
           label: Configs
           placeholder_key: Key
