@@ -116,7 +116,6 @@ class HealthcheckPlugin extends Plugin {
 		$defaultPayload = [
 			'status_code' => 200,
 			'status_message' => 'OK',
-			//'timestamp' => "timestamp",
 			'timestamp' => date('Y-m-d H:i:s'),
 			'environment' => $this->grav['config']->get('environment'),
 			'grav_version' => GRAV_VERSION,
