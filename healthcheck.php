@@ -49,9 +49,62 @@ class HealthcheckPlugin extends Plugin {
 	public function onPageInitialized(): void {
 		// get the config of this plugin
 		$config = $this->config();
-
-		// set values for the default payload
 		$payload = [];
+
+		// loop through the info array and set the values
+		foreach ($config['info'] as $key => $value) {
+			// set the default value for the key
+			if ($key !== 'custom') $payload[$key] = $this->getDefaultPayloadValue($key);
+			// loop through the custom array and set the custom values
+			else $payload = array_merge($payload, $this->loopThroughConfig($value));
+		}
+
+		// get the custom config values
+		$payload['config'] = $this->loopThroughConfig($config['config']['custom'], true);
+
+		// encode the payload to json and echo it
+		$json = json_encode($payload);
+		echo $json;
+	}
+
+	/**
+	 * Loop through the config array and get the values from the config
+	 * @param array $config
+	 * @param bool $getConfig
+	 * @return array|null
+	 */
+	private function loopThroughConfig(array $config, bool $getConfig = false): ?array {
+		if (!is_array($config) || count($config) === 0) return null;
+
+		$payload = [];
+		foreach ($config as $key => $value) {
+			if (is_array($value)) {
+				$this->loopThroughConfig($value);
+			} else {
+				if ($getConfig) $value = $this->getGravConfig($value);
+
+				$payload[$key] = $value;
+			}
+		}
+
+		return $payload;
+	}
+
+	/**
+	 * Get the config value from the Grav config
+	 * @param string $key
+	 * @return mixed
+	 */
+	private function getGravConfig(string $key): mixed {
+		return $this->grav['config']->get($key);
+	}
+
+	/**
+	 * Get the default payload value
+	 * @param string $key
+	 * @return mixed
+	 */
+	private function getDefaultPayloadValue(string $key): mixed {
 		$defaultPayload = [
 			'status_code' => 200,
 			'status_message' => 'OK',
@@ -65,33 +118,7 @@ class HealthcheckPlugin extends Plugin {
 				//'theme' => $this->grav['config']->get('theme'),
 			],
 		];
-
-		// loop through the info array and set the default values
-		foreach ($config['info'] as $key => $value) {
-			if ($value && $key != 'custom') {
-				// set the default value for the key
-				$payload[$key] = $defaultPayload[$key];
-			} elseif ($key == 'custom') {
-				// loop through the custom array and set the custom values
-				foreach ($value as $customKey => $customValue) {
-					$payload[$customKey] = $customValue;
-				}
-			}
-		}
-
-		// loop through the config array and get the values from the config
-		foreach ($config['config'] as $key => $value) {
-			foreach ($value as $customKey => $customValue) {
-				$payload['config'][$customKey] = $this->grav['config']->get($customValue);
-			}
-		}
-
-		$json = json_encode($payload);
-		echo $json;
-	}
-
-	private function getConfig(){
-
+		return $defaultPayload[$key];
 	}
 
 	/**
