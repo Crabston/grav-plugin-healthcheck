@@ -54,13 +54,13 @@ class HealthcheckPlugin extends Plugin {
 		// loop through the info array and set the values
 		foreach ($config['info'] as $key => $value) {
 			// set the default value for the key
-			if ($key !== 'custom') $payload[$key] = $this->getDefaultPayloadValue($key);
+			if ($key !== 'custom' && $value) $payload[$key] = $this->getDefaultPayloadValue($key);
 			// loop through the custom array and set the custom values
-			else $payload = array_merge($payload, $this->loopThroughConfig($value));
+			elseif ($key === 'custom' && $value) $payload = array_merge($payload, $this->loopThroughConfig($value));
 		}
 
 		// get the custom config values
-		$payload['config'] = $this->loopThroughConfig($config['config']['custom'], true);
+		if ($config['config']) $payload['config'] = $this->loopThroughConfig($config['config'], true);
 
 		// encode the payload to json and echo it
 		$json = json_encode($payload);
@@ -73,7 +73,9 @@ class HealthcheckPlugin extends Plugin {
 	 * @param bool $getConfig
 	 * @return array|null
 	 */
-	private function loopThroughConfig(array $config, bool $getConfig = false): ?array {
+	private function loopThroughConfig($config, bool $getConfig = false): ?array {
+		if (!$config) return null;
+
 		$payload = [];
 
 		foreach ($config as $key => $value) {
@@ -89,6 +91,7 @@ class HealthcheckPlugin extends Plugin {
 				$ref = &$ref[$k];
 			}
 
+			// if getConfig is true, get the value from the Grav config
 			if ($getConfig) $value = $this->getGravConfig($value);
 			$ref[$lastKey] = $value;
 		}
@@ -113,15 +116,11 @@ class HealthcheckPlugin extends Plugin {
 		$defaultPayload = [
 			'status_code' => 200,
 			'status_message' => 'OK',
+			//'timestamp' => "timestamp",
+			'timestamp' => date('Y-m-d H:i:s'),
+			'environment' => $this->grav['config']->get('environment'),
 			'grav_version' => GRAV_VERSION,
 			'php_version' => PHP_VERSION,
-			'environment' => $this->grav['config']->get('environment'),
-			'config' => [
-				//'system' => $this->grav['config']->get('system'),
-				//'site' => $this->grav['config']->get('site'),
-				//'backups' => $this->grav['config']->get('backups'),
-				//'theme' => $this->grav['config']->get('theme'),
-			],
 		];
 		return $defaultPayload[$key];
 	}
