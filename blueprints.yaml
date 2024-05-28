@@ -33,5 +33,5 @@ form:
         type: bool
     route:
       type: text
-      label: Route
-      help: Endpoint where the healthcheck will be available
+      label: PLUGIN_HEALTHCHECK.ROUTE.LABEL
+      description: PLUGIN_HEALTHCHECK.ROUTE.DESCRIPTION
