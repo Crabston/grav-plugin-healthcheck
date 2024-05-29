@@ -1,5 +1,5 @@
 # v1.1.0
-##  2024-05-28
+##  28-05-2024
 
 1. [](#new)
     * added more config options
@@ -7,7 +7,7 @@
     * added German translation
 
 # v1.0.0
-##  2024-04-17
+##  17-04-2024
 
 1. [](#new)
     * Initial release
